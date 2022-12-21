@@ -30,7 +30,7 @@ path_normal_pf = path_normal(path)
 ftp_setting = read_json_file(path_normal_fd)
 path_folder = read_json_file(path_normal_pf)
 
-path_file = path_folder['folder']['path_1']
+path_file = path_folder['folder']['path']
 
 
 def run():
