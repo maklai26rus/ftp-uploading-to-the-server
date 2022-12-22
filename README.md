@@ -6,9 +6,10 @@
 ftp_server
 {
   "ftp": {
-    "host": "***",
+    "host": "Хост сервера",
     "user": "***",
-    "password": "***"
+    "password": "***",
+    "catalog":"NONE" # переход в нужный каталог на сервере
   }
 }
 

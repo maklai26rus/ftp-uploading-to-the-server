@@ -2,6 +2,7 @@
   "ftp": {
     "host": "***",
     "user": "***",
-    "password": "***"
+    "password": "***",
+    "catalog": "NONE"
   }
 }
