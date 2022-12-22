@@ -1,3 +1,4 @@
+import ftplib
 from ftplib import FTP
 import json
 import os
@@ -45,13 +46,13 @@ def run():
 
         try:
             ftp.cwd(folder_json['folder']['catalog'])
-        except:
+        except PermissionError:
             ftp.mkd(folder_json['folder']['catalog'])
             ftp.cwd(folder_json['folder']['catalog'])
 
         try:
             ftp.cwd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
-        except:
+        except PermissionError:
             ftp.mkd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
             ftp.cwd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
 
@@ -60,9 +61,8 @@ def run():
             try:
                 with open(path_file + '\\' + pf[i], 'rb') as f:
                     ftp.storbinary('STOR ' + pf[i], f)
-            except PermissionError:
-                ftp.mkd(pf[i])
-
+            except:
+                pass
         # data = ftp.retrlines('LIST')
         ftp.quit()
 
