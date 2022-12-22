@@ -46,13 +46,13 @@ def run():
 
         try:
             ftp.cwd(folder_json['folder']['catalog'])
-        except PermissionError:
+        except:
             ftp.mkd(folder_json['folder']['catalog'])
             ftp.cwd(folder_json['folder']['catalog'])
 
         try:
             ftp.cwd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
-        except PermissionError:
+        except:
             ftp.mkd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
             ftp.cwd(folder_json['folder']['new_archive_folder'] + "_" + str(date.today()))
 
