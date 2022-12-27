@@ -46,9 +46,8 @@ def run():
         except ValueError:
             pass
 
-        pf = os.listdir(path)
-        print(path)
-        print(file_save)
+        split_path = file_save.split('\\')
+        print(split_path[-1])
 
         try:
             ftp.cwd(j_sf['folder']['catalog'])
@@ -65,7 +64,7 @@ def run():
         try:
             # print(file_save)
             with open(file_save, 'rb') as f:
-                ftp.storbinary('STOR ' + "main.py", f)
+                ftp.storbinary('STOR ' + split_path[-1], f)
         except:
             print('Ошибка')
             pass
