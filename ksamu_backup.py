@@ -47,7 +47,6 @@ def run():
             pass
 
         split_path = file_save.split('\\')
-        print(split_path[-1])
 
         try:
             ftp.cwd(j_sf['folder']['catalog'])
