@@ -1,21 +1,21 @@
 import os
-import json
+# import json
 from ftplib import FTP
 from datetime import date
-from setting_ftp import setting_server, log_txt, setting_folder, path_normal, read_json_file
+from setting_ftp import log_txt, ftp_setting_json, folder_json, path_normal
 
-j_sf = read_json_file(setting_folder)
-ftp_setting_json = read_json_file(setting_server)
+fs = folder_json()
+fsj = ftp_setting_json()
 
 
 def run():
     """Вызгрузка файлов на сервер FTP"""
-    with FTP(host=ftp_setting_json['ftp']['host']) as ftp:
-        ftp.login(user=ftp_setting_json['ftp']['user'], passwd=ftp_setting_json['ftp']['password'])
-        if ftp_setting_json['ftp']['catalog'] is not None:
-            ftp.cwd(ftp_setting_json['ftp']['catalog'])
+    with FTP(host=fsj['ftp']['host']) as ftp:
+        ftp.login(user=fsj['ftp']['user'], passwd=fsj['ftp']['password'])
+        if fsj['ftp']['catalog'] is not None:
+            ftp.cwd(fsj['ftp']['catalog'])
 
-        path = j_sf['folder']['path']
+        path = fs['folder']['path']
 
         files_list = os.listdir(path)
         files = list(map(path_normal, [os.path.join(path, i) for i in files_list]))
@@ -28,22 +28,21 @@ def run():
         split_path = file_save.split('\\')
 
         try:
-            ftp.cwd(j_sf['folder']['catalog'])
+            ftp.cwd(fs['folder']['catalog'])
         except:
-            ftp.mkd(j_sf['folder']['catalog'])
-            ftp.cwd(j_sf['folder']['catalog'])
+            ftp.mkd(fs['folder']['catalog'])
+            ftp.cwd(fs['folder']['catalog'])
 
         try:
-            ftp.cwd(j_sf['folder']['new_archive_folder'])
+            ftp.cwd(fs['folder']['new_archive_folder'])
         except:
-            ftp.mkd(j_sf['folder']['new_archive_folder'])
-            ftp.cwd(j_sf['folder']['new_archive_folder'])
+            ftp.mkd(fs['folder']['new_archive_folder'])
+            ftp.cwd(fs['folder']['new_archive_folder'])
 
-        arh = 'arhiv' + '.' + split_path[-1].split('.')[-1]
+        arh = fs['folder']['new_name_file'] + '.' + split_path[-1].split('.')[-1]
 
         try:
             with open(file_save, 'rb') as f:
-                # ftp.storbinary('STOR ' + split_path[-1], f)
                 ftp.storbinary('STOR ' + arh, f)
         except:
             print('Ошибка')
