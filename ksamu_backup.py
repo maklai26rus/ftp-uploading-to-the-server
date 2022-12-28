@@ -44,11 +44,12 @@ def run():
         try:
             with open(file_save, 'rb') as f:
                 ftp.storbinary('STOR ' + arh, f)
+
+            with open(log_txt, 'a', encoding='utf-8') as f:
+                f.write(f'Копирование {str(arh)} сделано в {str(date.today())} \n')
         except:
             print('Ошибка')
         # data = ftp.retrlines('LIST')
-        with open(log_txt, 'a', encoding='utf-8') as f:
-            f.write(f'Копирование {str(arh)} сделано в {str(date.today())} \n')
 
         ftp.quit()
 

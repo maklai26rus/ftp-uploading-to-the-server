@@ -19,7 +19,9 @@ def read_json_file(file):
     :param file:
     :return: возращает словарь из json
     """
-    with open(file, 'r', encoding='utf-8') as ff:
+    # на сервере 2012 нормально работает кодировка utf-8 на сервере 2019 пришлось добавить utf-8-sig
+    # with open(file, 'r', encoding='utf-8') as ff:
+    with open(file, 'r', encoding='utf-8-sig') as ff:
         j = json.load(ff)
     return j
 
