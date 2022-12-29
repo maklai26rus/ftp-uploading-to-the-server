@@ -46,10 +46,13 @@ def run():
                 ftp.storbinary('STOR ' + arh, f)
 
             with open(log_txt, 'a', encoding='utf-8') as f:
-                f.write(f'Копирование {str(arh)} сделано в {str(date.today())} \n')
+                f.write(f'Копирование {file_save}  сделано в {str(date.today())} переименован в  {arh}\n')
         except:
             print('Ошибка')
         # data = ftp.retrlines('LIST')
+
+        if fs['folder']['delete']:
+            os.remove(file_save)
 
         ftp.quit()
 

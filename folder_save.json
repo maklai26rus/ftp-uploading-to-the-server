@@ -1,8 +1,9 @@
 {
   "folder": {
     "path": "C:\\Users\\Maklai\\Downloads\\Новая папка",
-    "catalog": "KSAMU",
-    "new_archive_folder": "Archiv_KSAMU",
-    "new_name_file": "Archiv"
+    "catalog": "Test",
+    "new_archive_folder": "Test",
+    "new_name_file": "Archiv",
+    "delete": true
   }
 }
