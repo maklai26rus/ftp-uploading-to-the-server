@@ -1,9 +1,10 @@
 {
   "folder": {
     "path": "C:\\Users\\Maklai\\Downloads\\Новая папка",
-    "catalog": "Test",
-    "new_archive_folder": "Test",
-    "new_name_file": "Archiv",
-    "delete": true
+    "catalog": "1C",
+    "new_archive_folder": "1С",
+    "new_name_file": "Archiv_1С",
+    "delete": false,
+    "path_end": "C:\\Users\\Maklai\\Downloads\\2"
   }
 }
